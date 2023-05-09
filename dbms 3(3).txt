@@ -1,0 +1,252 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use bank;
+Database changed
+mysql> show tbles;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tbles' at line 1
+mysql> show tables;
++----------------+
+| Tables_in_bank |
++----------------+
+| customer       |
+| employe        |
+| employee       |
+| workers        |
++----------------+
+4 rows in set (0.00 sec)
+
+mysql> use employee
+Database changed
+mysql> desc employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| empno      | int         | YES  |     | NULL    |       |
+| empname    | varchar(10) | YES  |     | NULL    |       |
+| department | varchar(10) | YES  |     | NULL    |       |
+| salary     | int         | YES  |     | NULL    |       |
+| phone      | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into empno values(123,'karthi','ai',12000,12234456)
+    -> insert into empno values(123,'karthi','ai',12000,12234456);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into empno values(123,'karthi','ai',12000,12234456)' at line 2
+mysql> insert into empno values(123,'karthi','ai',12000,12234456);
+ERROR 1146 (42S02): Table 'employee.empno' doesn't exist
+mysql> insert into employee values(123,'karthi','ai',12000,12234456)
+    -> insert into employee values(123,'karthi','ai',12000,12234456);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into employee values(123,'karthi','ai',12000,12234456)' at line 2
+mysql> insert into employee values(133,'vimal','it',12000,1235676);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into employee values(126,'saran','cse',12000,1268543);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(128,'sai','ec',12000,26828583);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> desc employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| empno      | int         | YES  |     | NULL    |       |
+| empname    | varchar(10) | YES  |     | NULL    |       |
+| department | varchar(10) | YES  |     | NULL    |       |
+| salary     | int         | YES  |     | NULL    |       |
+| phone      | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-------+---------+------------+--------+-----------+
+| empno | empname | department | salary | phone     |
++-------+---------+------------+--------+-----------+
+|     1 | pavan   | support    |   5000 | 987654321 |
+|     2 | ganesh  | executive  |   6000 | 123456789 |
+|     3 | venu    | engineeg   |   4500 | 991958435 |
+|     5 | mohan   | executive  |   9000 | 936754935 |
+|     6 | laxman  | executive  |   9009 | 891932508 |
+|     7 | lakshmi | engineer   |   8000 | 543672821 |
+|     8 | lazar   | engineer   |   8900 | 567895432 |
+|   133 | vimal   | it         |  12000 |   1235676 |
+|   126 | saran   | cse        |  12000 |   1268543 |
+|   128 | sai     | ec         |  12000 |  26828583 |
++-------+---------+------------+--------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select empno,empname employee;
+ERROR 1054 (42S22): Unknown column 'empno' in 'field list'
+mysql> select empno,empname from employee;
++-------+---------+
+| empno | empname |
++-------+---------+
+|     1 | pavan   |
+|     2 | ganesh  |
+|     3 | venu    |
+|     5 | mohan   |
+|     6 | laxman  |
+|     7 | lakshmi |
+|     8 | lazar   |
+|   133 | vimal   |
+|   126 | saran   |
+|   128 | sai     |
++-------+---------+
+10 rows in set (0.00 sec)
+
+mysql> slect empno,salary,salary*0.5 from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect empno,salary,salary*0.5 from employee' at line 1
+mysql> slect empno,salary*0.5 from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect empno,salary*0.5 from employee' at line 1
+mysql> select * from employee;
++-------+---------+------------+--------+-----------+
+| empno | empname | department | salary | phone     |
++-------+---------+------------+--------+-----------+
+|     1 | pavan   | support    |   5000 | 987654321 |
+|     2 | ganesh  | executive  |   6000 | 123456789 |
+|     3 | venu    | engineeg   |   4500 | 991958435 |
+|     5 | mohan   | executive  |   9000 | 936754935 |
+|     6 | laxman  | executive  |   9009 | 891932508 |
+|     7 | lakshmi | engineer   |   8000 | 543672821 |
+|     8 | lazar   | engineer   |   8900 | 567895432 |
+|   133 | vimal   | it         |  12000 |   1235676 |
+|   126 | saran   | cse        |  12000 |   1268543 |
+|   128 | sai     | ec         |  12000 |  26828583 |
++-------+---------+------------+--------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> slect empno,salary,salary*0.5 from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect empno,salary,salary*0.5 from employee' at line 1
+mysql> slect empno,salary,salary*0.5 from employee
+    -> select empno,salary,salary*0.5 from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect empno,salary,salary*0.5 from employee
+select empno,salary,salary*0.5 from ' at line 1
+mysql> select empno,salary,salary*0.5 from employee
+    -> select empno,salary,salary*0.5 from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select empno,salary,salary*0.5 from employee' at line 2
+mysql> select empno,salary,salary*2 from employee;
++-------+--------+----------+
+| empno | salary | salary*2 |
++-------+--------+----------+
+|     1 |   5000 |    10000 |
+|     2 |   6000 |    12000 |
+|     3 |   4500 |     9000 |
+|     5 |   9000 |    18000 |
+|     6 |   9009 |    18018 |
+|     7 |   8000 |    16000 |
+|     8 |   8900 |    17800 |
+|   133 |  12000 |    24000 |
+|   126 |  12000 |    24000 |
+|   128 |  12000 |    24000 |
++-------+--------+----------+
+10 rows in set (0.00 sec)
+
+mysql> select empno,salary,salary*2 as new salary from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'salary from employee' at line 1
+mysql> select empno,salary,salary*2 as newsalary from employee;
++-------+--------+-----------+
+| empno | salary | newsalary |
++-------+--------+-----------+
+|     1 |   5000 |     10000 |
+|     2 |   6000 |     12000 |
+|     3 |   4500 |      9000 |
+|     5 |   9000 |     18000 |
+|     6 |   9009 |     18018 |
+|     7 |   8000 |     16000 |
+|     8 |   8900 |     17800 |
+|   133 |  12000 |     24000 |
+|   126 |  12000 |     24000 |
+|   128 |  12000 |     24000 |
++-------+--------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select *from employee where  salary>=9000;
++-------+---------+------------+--------+-----------+
+| empno | empname | department | salary | phone     |
++-------+---------+------------+--------+-----------+
+|     5 | mohan   | executive  |   9000 | 936754935 |
+|     6 | laxman  | executive  |   9009 | 891932508 |
+|   133 | vimal   | it         |  12000 |   1235676 |
+|   126 | saran   | cse        |  12000 |   1268543 |
+|   128 | sai     | ec         |  12000 |  26828583 |
++-------+---------+------------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select empno,salary,salary*0.5 from employee;
++-------+--------+------------+
+| empno | salary | salary*0.5 |
++-------+--------+------------+
+|     1 |   5000 |     2500.0 |
+|     2 |   6000 |     3000.0 |
+|     3 |   4500 |     2250.0 |
+|     5 |   9000 |     4500.0 |
+|     6 |   9009 |     4504.5 |
+|     7 |   8000 |     4000.0 |
+|     8 |   8900 |     4450.0 |
+|   133 |  12000 |     6000.0 |
+|   126 |  12000 |     6000.0 |
+|   128 |  12000 |     6000.0 |
++-------+--------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select distinct department from employee;
++------------+
+| department |
++------------+
+| support    |
+| executive  |
+| engineeg   |
+| engineer   |
+| it         |
+| cse        |
+| ec         |
++------------+
+7 rows in set (0.00 sec)
+
+mysql> select count(distinct) department from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') department from employee' at line 1
+mysql> select count (distinct) department from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'distinct) department from employee' at line 1
+mysql> select count (distinct department) from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'distinct department) from employee' at line 1
+mysql> select count(distinct department) from employee;
++----------------------------+
+| count(distinct department) |
++----------------------------+
+|                          7 |
++----------------------------+
+1 row in set (0.01 sec)
+
+mysql> select * from employee where empname orderby asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'orderby asc' at line 1
+mysql> select * from employee order by empname;
++-------+---------+------------+--------+-----------+
+| empno | empname | department | salary | phone     |
++-------+---------+------------+--------+-----------+
+|     2 | ganesh  | executive  |   6000 | 123456789 |
+|     7 | lakshmi | engineer   |   8000 | 543672821 |
+|     6 | laxman  | executive  |   9009 | 891932508 |
+|     8 | lazar   | engineer   |   8900 | 567895432 |
+|     5 | mohan   | executive  |   9000 | 936754935 |
+|     1 | pavan   | support    |   5000 | 987654321 |
+|   128 | sai     | ec         |  12000 |  26828583 |
+|   126 | saran   | cse        |  12000 |   1268543 |
+|     3 | venu    | engineeg   |   4500 | 991958435 |
+|   133 | vimal   | it         |  12000 |   1235676 |
++-------+---------+------------+--------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employee order by branch;
+ERROR 1054 (42S22): Unknown column 'branch' in 'order clause'
+mysql> select * from employee order by branch;
